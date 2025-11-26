@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Poppins, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #3E3E3E,#1b1b2f,#162447 );
+      color: white;
+      background-attachment: fixed;
+      padding: 10px;
+    }
+
+    header {
+      width: 100%;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: linear-gradient(135deg,#3E3E3E);
+      font-weight: bold;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+
+    nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.7);
+    }
+
+    section {
+      padding: 40px 10px;
+      margin-bottom: 20px;
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 0.5s ease;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.8);
+      background: linear-gradient(135deg,#4444af);
+      backdrop-filter: blur(8px);
+    }
+
+    section.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .info-box {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 20px;
+      border-radius: 10px;
+      background: rgba(62, 62, 62);
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    }
+
+    .profile {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 15px auto;
+      border-radius: 50%;
+      border: 4px solid rgba(0, 200, 255, 0.6);
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.6);
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+      100%{transform:translateY(0)}
+    }
+
+    @media(max-width: 480px) {
+      header h1 {
+        font-size: 20px;
+      }
+      nav a {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+      .title {
+        font-size: 24px;
+      }
+      .info-box {
+        font-size: 14px;
+        line-height: 22px;
+        padding: 15px;
+      }
+      .profile {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>My Portfolio</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#details">Details</a>
+  </nav>
+</header>
+
+<section id="home" class="show">
+  <div class="profile" id="profilePic"
+       style="background-image: url('https://img.sanishtech.com/u/35fb589a17e5fe6552c288478f1d24d3.jpg');"></div>
+
+  <input type="file" id="imageUpload" accept="image/*"
+    style="display:block; margin:10px auto; padding:10px; background:#3E3E3E; border:none; border-radius:8px; font-weight:bold;">
+
+  <h2 class="title">Welcome!</h2>
+  <div class="info-box">
+    <p>Hello!.</p>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="title">About Me</h2>
+  <div class="info-box">
+    <p> I'm Kerwin, I enjoy playing games, especially those challage my startegy and creativity which why I'm starting to get interested in coding, thats why i want to learn more about programming, </p>
+  </div>
+</section>
+
+<section id="details">
+  <h2 class="title">Personal Information</h2>
+  <div class="info-box">
+    <p><b>Name:</b>Kerwin B Jumalon </p>
+    <p><b>Address:</b>P.L Tongohan brgy:Katipunan Bayan Tanay Rizal</p>
+    <p><b>Grade Level:</b>1st Year Collages</p>
+    <p><b>Course / Program:</b>Bachelor of Science in Information Tecnology </p>
+    <p><b>Contact Number:</b>+639071921004 </p>
+    <p><b>Email:</b>Kerwinbjumalob@gmail.com</p>
+  </div>
+</section>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('show'));
+    document.getElementById(id).classList.add('show');
+  }
+
+  document.querySelector("a[href='#home']").addEventListener('click', () => showSection('home'));
+  document.querySelector("a[href='#about']").addEventListener('click', () => showSection('about'));
+  document.querySelector("a[href='#details']").addEventListener('click', () => showSection('details'));
+
+  document.getElementById("imageUpload").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById("profilePic").style.backgroundImage = url('${e.target.result}');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+
+<
